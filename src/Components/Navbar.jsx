@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, NavbarBrand, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, NavbarContent, NavbarItem, Link, Button } from "@nextui-org/react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 
 const MenuBar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        toast.success("Logged out successfully");
+      })
+      .catch((err) => toast.error(err));
+  };
 
   const menuItems = [
     "Profile",
     "Dashboard",
-    // "Activity",
-    // "Analytics",
-    // "System",
-    // "Deployments",
-    // "My Settings",
-    // "Team Settings",
-    // "Help & Feedback",
     "Log Out",
   ];
 
@@ -43,7 +46,7 @@ const MenuBar = () => {
           </NavLink>
         </NavbarItem>
         <NavbarItem>
-        <NavLink
+          <NavLink
             to="/customer"
             className={({ isActive, isPending }) =>
               isPending ? "pending" : isActive ? "text-blue-600 font-bold" : "text-black"
@@ -53,7 +56,7 @@ const MenuBar = () => {
           </NavLink>
         </NavbarItem>
         <NavbarItem>
-        <NavLink
+          <NavLink
             to="/dashboard"
             className={({ isActive, isPending }) =>
               isPending ? "pending" : isActive ? "text-blue-600 font-bold" : "text-black"
@@ -64,21 +67,21 @@ const MenuBar = () => {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        {/* <NavbarItem className="hidden lg:flex">
-            <Link href="#">Login</Link>
-          </NavbarItem> */}
         <NavbarItem>
-          {/* <Button as={Link} color="primary" href="#" variant="flat">
-            Sign In
-          </Button> */}
-          <NavLink
-            to="/login"
-            className={({ isActive, isPending }) =>
-              isPending ? "pending" : isActive ? "bg-blue-600 text-white font-bold px-6 py-2 rounded-lg" : "bg-blue-400 text-white font-bold px-6 py-2 rounded-lg"
-            }
-          >
-            Sign In
-          </NavLink>
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="bg-blue-600 text-white font-bold px-6 py-2 rounded-lg"
+            >
+              Log Out
+            </button>
+          ) : (
+            <Link to={"/login"}>
+              <button className="bg-blue-600 text-white font-bold px-6 py-2 rounded-lg">
+                Log in
+              </button>
+            </Link>
+          )}
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
