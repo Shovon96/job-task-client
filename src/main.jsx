@@ -13,6 +13,7 @@ import DashHome from './DashBoard/DashHome';
 import Dashboard from './MainComponent/Dashboard';
 import { Toaster } from 'react-hot-toast';
 import Registetion from './Components/Registetion';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
   // dashboard
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "/dashboard",

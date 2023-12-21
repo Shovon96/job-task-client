@@ -33,7 +33,8 @@ const Login = () => {
                 toast.success('Successfully Login!')
             })
             .catch(err => {
-                toast.error(err.messsage)
+                toast.error(err.message)
+                navigate('/login')
             })
         navigate(from, { replace: true })
     };
