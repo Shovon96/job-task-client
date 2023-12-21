@@ -2,24 +2,32 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import {NextUIProvider} from '@nextui-org/react'
+import { NextUIProvider } from '@nextui-org/react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AuthProvider from './AuthProvider/AuthProvider';
 import MainLayout from './MainComponent/MainLayout';
 import ErrorPage from './ErrorPage/ErrorPage';
 import Home from './Pages/Home';
 import Login from './Components/Login';
 import DashHome from './DashBoard/DashHome';
 import Dashboard from './MainComponent/Dashboard';
+import { Toaster } from 'react-hot-toast';
+import Registetion from './Components/Registetion';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
     errorElement: <ErrorPage></ErrorPage>,
-    children:[
+    children: [
       {
         path: '/',
         element: <Home></Home>
 
+      },
+      {
+        path: '/registetion',
+        element: <Registetion></Registetion>
       },
       {
         path: '/login',
@@ -27,7 +35,7 @@ const router = createBrowserRouter([
       }
     ]
   },
-  
+
   // dashboard
   {
     path: "/dashboard",
@@ -41,10 +49,21 @@ const router = createBrowserRouter([
   },
 ]);
 
+const query = new QueryClient()
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <NextUIProvider>
-      <RouterProvider router={router} />
-    </NextUIProvider>
+    <AuthProvider>
+      <QueryClientProvider client={query}>
+        <NextUIProvider>
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+          />
+          <RouterProvider router={router} />
+        </NextUIProvider>
+      </QueryClientProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )

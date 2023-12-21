@@ -1,16 +1,42 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form"
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
+
 
 const Login = () => {
+    const { signIn, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(() => {
+                toast.success("Login Successfully");
+                // toast.success('Successfully toasted!')
+                navigate(from, { replace: true })
+            })
+    }
     const {
         register,
         formState: { errors },
         handleSubmit,
     } = useForm()
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        signIn(data.email, data.password)
+            .then(() => {
+                toast.success('Successfully Login!')
+            })
+            .catch(err => {
+                toast.error(err.messsage)
+            })
+        navigate(from, { replace: true })
+    };
 
     return (
         <div className="h-[90vh] flex items-center justify-center">
@@ -45,6 +71,7 @@ const Login = () => {
                     </Button>
                     <hr />
                     <Button
+                        onClick={handleGoogleSignIn}
                         color="primary" variant="ghost"
                         className="w-full text-lg font-bold mt-4 rounded-full flex gap-2"
                     >
