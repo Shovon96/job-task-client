@@ -83,15 +83,15 @@ const DashHome = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="flex flex-col min-h-screen w-full bg-gray-600 text-white pb-5">
-        <div className="flex flex-col py-8  justify-center">
-          <h3 className="text-3xl font-semibold">
+      <div className="flex flex-col min-h-screen w-full pb-5">
+        <div className="flex flex-col justify-center">
+          <h3 className="text-3xl font-bold text-center py-8">
             React Beautiful Drag and Drop
           </h3>
-          <p className="text-xl font-semibold">react-beautiful-dnd</p>
+          {/* <p className="text-xl font-semibold">react-beautiful-dnd</p> */}
         </div>
 
-        <div className="flex justify-between px-8">
+        <div className="flex justify-between px-8 bg-gray-500 text-white pt-4">
           {state.columnOrder.map((columnId) => {
             const column = state.columns[columnId];
             const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);

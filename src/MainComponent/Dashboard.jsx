@@ -3,7 +3,7 @@ import SideBar from "../DashBoard/SideBar";
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="max-w-6xl mx-auto">
             <SideBar></SideBar>
             <Outlet></Outlet>
         </div>
