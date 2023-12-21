@@ -6,8 +6,9 @@ import {NextUIProvider} from '@nextui-org/react'
 import MainLayout from './MainComponent/MainLayout';
 import ErrorPage from './ErrorPage/ErrorPage';
 import Home from './Pages/Home';
-import Dashboard from './Dashboard';
 import Login from './Components/Login';
+import DashHome from './DashBoard/DashHome';
+import Dashboard from './MainComponent/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -21,14 +22,22 @@ const router = createBrowserRouter([
 
       },
       {
-        path: '/dashboard',
-        element: <Dashboard></Dashboard>
-      },
-      {
         path: '/login',
         element: <Login></Login>
       }
     ]
+  },
+  
+  // dashboard
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <DashHome></DashHome>,
+      },
+    ],
   },
 ]);
 
