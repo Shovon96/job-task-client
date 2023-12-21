@@ -68,9 +68,17 @@ const MenuBar = () => {
             <Link href="#">Login</Link>
           </NavbarItem> */}
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
+          {/* <Button as={Link} color="primary" href="#" variant="flat">
+            Sign In
+          </Button> */}
+          <NavLink
+            to="/login"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "bg-blue-600 text-white font-bold px-6 py-2 rounded-lg" : "bg-blue-400 text-white font-bold px-6 py-2 rounded-lg"
+            }
+          >
+            Sign In
+          </NavLink>
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
