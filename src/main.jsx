@@ -5,18 +5,26 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {NextUIProvider} from '@nextui-org/react'
 import MainLayout from './MainComponent/MainLayout';
 import ErrorPage from './ErrorPage/ErrorPage';
+import Home from './Pages/Home';
+import Dashboard from './Dashboard';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
     errorElement: <ErrorPage></ErrorPage>,
-    // children:[
-    //   {
-    //     path: '/'
+    children:[
+      {
+        path: '/',
+        element: <Home></Home>
 
-    //   }
-    // ]
+      },
+      {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>
+
+      }
+    ]
   },
 ]);
 
