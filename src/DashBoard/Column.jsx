@@ -1,49 +1,34 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { Droppable } from "react-beautiful-dnd";
+import Card from "./Card";
 
-const Column = ({ column, tasks }) => {
+const Column = ({ task, title, refetch, provided }) => {
   return (
-    <div className="rounded w-96 h-[629px] flex flex-col">
-      <div className="text-center h-[60px] rounded px-3 mb-3">
-        <p className="text-xl font-semibold">{column.title}</p>
+    <div
+      {...provided.droppableProps}
+      ref={provided.innerRef}
+      className="rounded w-[300px] h-[629px] flex flex-col overflow-y-auto"
+    >
+      <div className="text-center h-[60px] rounded-t-md px-3 bg-orange-400 flex items-center justify-center">
+        <p className="text-xl font-semibold">{title}</p>
       </div>
-
-      <Droppable droppableId={column.id}>
-        {(droppableProvided, droppableSnapshot) => (
-          <div
-            className="px-4 flex flex-1 flex-col"
-            ref={droppableProvided.innerRef}
-            {...droppableProvided.droppableProps}
-          >
-            {tasks.map((task, index) => (
-              <Draggable key={task.id} draggableId={`${task.id}`} index={index}>
-                {(draggableProvided, draggableSnapshot) => (
-                  <div
-                    className="mb-2 h-[72px] rounded-sm p-5 outline-2 outline-white"
-                    // outlineColor={
-                    //   draggableSnapshot.isDragging
-                    //     ? "card-border"
-                    //     : "transparent"
-                    // }
-                    // boxShadow={
-                    //   draggableSnapshot.isDragging
-                    //     ? "0 5px 10px rgba(0, 0, 0, 0.6)"
-                    //     : "unset"
-                    // }
-                    ref={draggableProvided.innerRef}
-                    {...draggableProvided.draggableProps}
-                    {...draggableProvided.dragHandleProps}
-                  >
-                    <p>{task.content}</p>
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {droppableProvided.placeholder}
-          </div>
-        )}
-      </Droppable>
+      <div className="px-2 flex flex-1 flex-col text-orange-500 border-b-2 border-x-2 border-orange-400 rounded-b-md overflow-y-auto">
+        {task &&
+          task.map((item, index) => (
+            <Draggable key={item._id} draggableId={item._id} index={index}>
+              {(provided) => (
+                <Card
+                  provided={provided}
+                  refetch={refetch}
+                  key={item._id}
+                  item={item}
+                />
+              )}
+            </Draggable>
+          ))}
+      </div>
+      {provided.placeholder}
     </div>
   );
 };
