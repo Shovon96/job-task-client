@@ -34,41 +34,41 @@ const AuthProvider = ({ children }) => {
     return signOut(auth)
   }
 
-  useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-        const userEmail = currentUser?.email || user?.email;
-        setUser(currentUser);
-        setLoading(false);
-        const loggedUser = { email: userEmail };
-        const url = "/jwt";
-        if (currentUser) {
-          axiosSecure
-            .post(url, loggedUser, {
-              withCredentials: true,
-            })
-            .then((res) => console.log(res.data));
-        } else {
-          axiosSecure
-            .post("/logout", loggedUser, {
-              withCredentials: true,
-            })
-            .then((res) => console.log("cookie cleared", res.data));
-        }
-      });
-      return () => {
-        unsubscribe();
-      };
-    }, [user?.email]);
-
   // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, currentUser => {
-  //     setLoading(false);
-  //     setUser(currentUser);
-  //   });
-  //   return () => {
-  //     return unsubscribe();
-  //   }
-  // }, [])
+  //     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //       const userEmail = currentUser?.email || user?.email;
+  //       setUser(currentUser);
+  //       setLoading(false);
+  //       const loggedUser = { email: userEmail };
+  //       const url = "/jwt";
+  //       if (currentUser) {
+  //         axiosSecure
+  //           .post(url, loggedUser, {
+  //             withCredentials: true,
+  //           })
+  //           .then((res) => console.log(res.data));
+  //       } else {
+  //         axiosSecure
+  //           .post("/logout", loggedUser, {
+  //             withCredentials: true,
+  //           })
+  //           .then((res) => console.log("cookie cleared", res.data));
+  //       }
+  //     });
+  //     return () => {
+  //       unsubscribe();
+  //     };
+  //   }, [user?.email]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, currentUser => {
+      setLoading(false);
+      setUser(currentUser);
+    });
+    return () => {
+      return unsubscribe();
+    }
+  }, [])
 
   const authInfo = {
     user,

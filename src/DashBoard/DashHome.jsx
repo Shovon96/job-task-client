@@ -12,7 +12,6 @@ const Home = () => {
   const [completed, setCompleted] = useState([]);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  
   const { data, refetch } = useQuery({
     queryKey: ["all-task", user],
     queryFn: async () => {

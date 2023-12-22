@@ -60,17 +60,15 @@ const query = new QueryClient()
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-      <QueryClientProvider client={query}>
+  <QueryClientProvider client={query}>
     <AuthProvider>
-        <NextUIProvider>
-          <Toaster
-            position="top-center"
-            reverseOrder={false}
-          />
-          <RouterProvider router={router} />
-        </NextUIProvider>
+      <NextUIProvider>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
+        <RouterProvider router={router} />
+      </NextUIProvider>
     </AuthProvider>
-      </QueryClientProvider>
-  </React.StrictMode>,
+  </QueryClientProvider>
 )
