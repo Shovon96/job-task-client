@@ -67,21 +67,20 @@ const CreateModal = ({ isOpen, closeModal, refetch }) => {
                       <label className="text-blue-500">Title: </label>
                       <input
                         {...register("title")}
-                        className="outline-blue-500 overflow-hidden bg-blue-200 py-1 px-1"
+                        className="outline-blue-500 overflow-hidden py-1 px-1 w-full bg-gray-100"
                         type="text"
                         placeholder="Title"
                         name="title"
                         required
-                      />
+                      /> <br />
                       <label className="text-blue-500">Description: </label>
                       <textarea
                         {...register("description")}
                         required
-                        className="outline-blue-500  bg-blue-200 py-1 px-1 mt-2"
+                        className="outline-blue-500 py-1 px-1 w-full bg-gray-100"
                         placeholder="Description"
                         name="description"
-                        cols="25"
-                        rows="4"
+                        rows='6'
                       ></textarea>
                       <br />
                       <label className="text-blue-500 ">Priority: </label>
@@ -96,7 +95,7 @@ const CreateModal = ({ isOpen, closeModal, refetch }) => {
                         <option value="moderate">Moderate</option>
                         <option value="high">High</option>
                       </select>
-                      <label className="text-blue-500 pl-1 ">Deadline:</label>
+                      <label className="text-blue-500 pl-1 ">Deadline: </label>
                       <input
                         required
                         {...register("deadline")}

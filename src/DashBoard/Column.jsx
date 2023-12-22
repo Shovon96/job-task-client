@@ -8,7 +8,7 @@ const Column = ({ task, title, refetch, provided }) => {
     <div
       {...provided.droppableProps}
       ref={provided.innerRef}
-      className="rounded w-[300px] h-[629px] flex flex-col overflow-y-auto"
+      className="rounded w-[280px] h-[629px] flex flex-col overflow-y-auto"
     >
       <div className="text-center h-[60px] rounded-t-md px-3 bg-blue-400 flex items-center justify-center">
         <p className="text-xl font-semibold">{title}</p>
