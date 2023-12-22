@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import app from "../firebaseConfig/firebase.config";
+import useAxiosSecure from "../Hooks/AxiosSecure";
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app);
@@ -10,7 +11,8 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const googleProvider = new GoogleAuthProvider()
+    const googleProvider = new GoogleAuthProvider();
+    const axiosSecure = useAxiosSecure();
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -32,37 +34,31 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    // const updateUserProfile = (name, photo) => {
-    //     return updateProfile(auth.currentUser, {
-    //         displayName: name, photoURL: photo
-    //     })
-    // }
-
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setLoading(false)
-            setUser(currentUser);
-            // if (currentUser) {
-            //     // get token and store client
-            //     const userInfo = { email: currentUser.email };
-            //     axiosPublic.post('/jwt', userInfo)
-            //         .then(res => {
-            //             if (res.data.token) {
-            //                 localStorage.setItem('access-token', res.data.token);
-            //                 setLoading(false);
-            //             }
-            //         })
-            // }
-            // else {
-            //     localStorage.removeItem('access-token');
-            //     setLoading(false);
-            // }
-            
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+          const userEmail = currentUser?.email || user?.email;
+          setUser(currentUser);
+          setLoading(false);
+          const loggedUser = { email: userEmail };
+          const url = "/jwt";
+          if (currentUser) {
+            axiosSecure
+              .post(url, loggedUser, {
+                withCredentials: true,
+              })
+              .then((res) => console.log(res.data));
+          } else {
+            axiosSecure
+              .post("/logout", loggedUser, {
+                withCredentials: true,
+              })
+              .then((res) => console.log("cookie cleared", res.data));
+          }
         });
         return () => {
-            return unsubscribe();
-        }
-    }, [])
+          unsubscribe();
+        };
+      }, [user?.email]);
 
     const authInfo = {
         user,

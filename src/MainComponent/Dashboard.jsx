@@ -1,13 +1,15 @@
 import { Outlet } from "react-router-dom";
 import SideBar from "../DashBoard/SideBar";
 
-const Dashboard = () => {
-    return (
-        <div className="max-w-6xl mx-auto">
-            <SideBar></SideBar>
-            <Outlet></Outlet>
-        </div>
-    );
+const DashboardLayout = () => {
+  return (
+    <div className="relative lg:flex max-h-screen ">
+      <SideBar />
+      <div className="flex-1 lg:ml-[320px]">
+        <Outlet />
+      </div>
+    </div>
+  );
 };
 
-export default Dashboard;
+export default DashboardLayout;
