@@ -14,6 +14,7 @@ import Dashboard from './MainComponent/Dashboard';
 import { Toaster } from 'react-hot-toast';
 import Registetion from './Components/Registetion';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Profile from './DashBoard/Profile';
 
 const router = createBrowserRouter([
   {
@@ -41,11 +42,16 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/dashboard",
-        element: <DashHome></DashHome>,
+        element: <PrivateRoute><DashHome></DashHome></PrivateRoute>,
       },
+      {
+        path: "/dashboard/profile",
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
+      }
     ],
   },
 ]);

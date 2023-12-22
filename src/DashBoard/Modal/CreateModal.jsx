@@ -3,7 +3,7 @@ import { Fragment, useContext } from "react";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import useAxiosSecure from "../../Hooks/AxiosSecure";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const CreateModal = ({ isOpen, closeModal, refetch }) => {
   const axiosSecure = useAxiosSecure();

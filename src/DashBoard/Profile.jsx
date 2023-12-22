@@ -8,9 +8,9 @@ const Profile = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-orange-200 flex-1">
-      <Helmet>
+      {/* <Helmet>
         <title>Profile | Dashboard</title>
-      </Helmet>
+      </Helmet> */}
       <div className="bg-white shadow-lg rounded-2xl md:w-3/5 w-3/4">
         <img
           alt="profile"

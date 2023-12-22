@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../Hooks/AxiosSecure";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Column from "./Column";
 import CreateModal from "./Modal/CreateModal";

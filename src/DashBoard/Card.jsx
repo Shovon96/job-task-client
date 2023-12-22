@@ -3,7 +3,7 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import useAxiosSecure from "../Hooks/AxiosSecure";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 import EditModal from "./Modal/EditModal";
 
 const Card = ({ item, refetch, provided }) => {
