@@ -57,7 +57,7 @@ const SideBar = () => {
           </NavLink>
           <NavLink
             className={`py-2 text-center mt-2 w-[80%] rounded-lg hover:text-blue-500 text-lg bg-blue-400 ${
-              location.pathname === "/dashboard/profile" && "text-blue-500 font-bold text-lg bg-blue-700"
+              location.pathname === "/dashboard/profile" && "text-blue-200 font-bold text-lg bg-blue-700"
             }`}
             to={"/dashboard/profile"}
           >

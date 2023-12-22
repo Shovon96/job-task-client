@@ -7,7 +7,7 @@ const Profile = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="flex justify-center items-center h-screen bg-orange-200 flex-1">
+    <div className="flex justify-center items-center h-screen bg-blue-200 flex-1">
       {/* <Helmet>
         <title>Profile | Dashboard</title>
       </Helmet> */}
@@ -33,22 +33,22 @@ const Profile = () => {
             <div className="flex flex-wrap items-center justify-between text-sm text-gray-600 ">
               <p className="flex flex-col">
                 Name
-                <span className="font-bold text-orange-500 ">
+                <span className="font-bold text-blue-500 ">
                   {user?.displayName}
                 </span>
               </p>
               <p className="flex flex-col">
                 Email
-                <span className="font-bold text-orange-500 ">
+                <span className="font-bold text-blue-500 ">
                   {user?.email}
                 </span>
               </p>
 
               <div>
-                <button className="bg-orange-500 px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-orange-200 hover:text-orange-500 block mb-1">
+                <button className="bg-blue-500 px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-blue-200 hover:text-blue-500 block mb-1">
                   Update Profile
                 </button>
-                <button className="bg-orange-500 px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-orange-200 hover:text-orange-500">
+                <button className="bg-blue-500 px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-blue-200 hover:text-blue-500">
                   Change Password
                 </button>
               </div>
