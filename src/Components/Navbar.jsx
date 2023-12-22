@@ -46,7 +46,7 @@ const MenuBar = () => {
             Home
           </NavLink>
         </NavbarItem>
-        <NavbarItem>
+        {/* <NavbarItem>
         <NavLink
             to="/customer"
             className={({ isActive, isPending }) =>
@@ -55,7 +55,7 @@ const MenuBar = () => {
           >
             Customer
           </NavLink>
-        </NavbarItem>
+        </NavbarItem> */}
         <NavbarItem>
         <NavLink
             to="/dashboard"

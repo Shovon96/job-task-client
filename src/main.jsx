@@ -61,8 +61,8 @@ const query = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
       <QueryClientProvider client={query}>
+    <AuthProvider>
         <NextUIProvider>
           <Toaster
             position="top-center"
@@ -70,7 +70,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           />
           <RouterProvider router={router} />
         </NextUIProvider>
-      </QueryClientProvider>
     </AuthProvider>
+      </QueryClientProvider>
   </React.StrictMode>,
 )
