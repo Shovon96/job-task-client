@@ -76,20 +76,19 @@ const EditModal = ({ isOpen, closeModal, item, refetch }) => {
                     <form onSubmit={handleUpdate}>
                       <label className="text-blue-500">Title: </label>
                       <input
-                        className="outline-blue-500 overflow-hidden bg-blue-200 py-1 px-1"
+                        className="outline-blue-500 overflow-hidden bg-gray-200 py-1 px-1 w-full"
                         defaultValue={item.title}
                         type="text"
                         placeholder="Title"
                         name="title"
-                      />
+                      /><br />
                       <label className="text-blue-500">Description: </label>
                       <textarea
-                        className="outline-blue-500  bg-blue-200 py-1 px-1 mt-2"
+                        className="outline-blue-500  bg-gray-200 py-1 px-1 mt-2 w-full"
                         defaultValue={item.description}
                         placeholder="Description"
                         name="description"
-                        cols="25"
-                        rows="4"
+                        rows="6"
                       ></textarea>
                       <br />
                       <label className="text-blue-500 ">Priority: </label>

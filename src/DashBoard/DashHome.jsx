@@ -12,6 +12,7 @@ const Home = () => {
   const [completed, setCompleted] = useState([]);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+  
   const { data, refetch } = useQuery({
     queryKey: ["all-task", user],
     queryFn: async () => {
@@ -66,7 +67,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen w-full mx-auto bg-blue-200 text-white pb-5">
+    <div className="flex flex-col min-h-screen w-full mx-auto text-white pb-5">
       {/* <Helmet>
         <title>Dashboard | Taskify</title>
       </Helmet> */}
@@ -75,7 +76,7 @@ const Home = () => {
           className="px-3 py-2 bg-blue-400 rounded-md hover:bg-blue-100 hover:text-blue-500"
           onClick={() => openModal()}
         >
-          Create Task
+          Create a Task
         </button>
       </div>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -84,7 +85,7 @@ const Home = () => {
             {(provided) => (
               <Column
                 provided={provided}
-                title={"Todo"}
+                title={"TODO"}
                 task={todo}
                 refetch={refetch}
               />
@@ -104,7 +105,7 @@ const Home = () => {
             {(provided) => (
               <Column
                 provided={provided}
-                title={"Completed"}
+                title={"COMPLETED"}
                 task={completed}
                 refetch={refetch}
               />

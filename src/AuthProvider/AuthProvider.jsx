@@ -9,72 +9,82 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
 
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const googleProvider = new GoogleAuthProvider();
-    const axiosSecure = useAxiosSecure();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const googleProvider = new GoogleAuthProvider();
+  const axiosSecure = useAxiosSecure();
 
-    const createUser = (email, password) => {
-        setLoading(true)
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
+  const createUser = (email, password) => {
+    setLoading(true)
+    return createUserWithEmailAndPassword(auth, email, password)
+  }
 
-    const signIn = (email, password) => {
-        setLoading(true)
-        return signInWithEmailAndPassword(auth, email, password)
-    }
+  const signIn = (email, password) => {
+    setLoading(true)
+    return signInWithEmailAndPassword(auth, email, password)
+  }
 
-    const googleSignIn = () => {
-        setLoading(true)
-        return signInWithPopup(auth, googleProvider)
-    }
+  const googleSignIn = () => {
+    setLoading(true)
+    return signInWithPopup(auth, googleProvider)
+  }
 
-    const logOut = () => {
-        setLoading(true)
-        return signOut(auth)
-    }
+  const logOut = () => {
+    setLoading(true)
+    return signOut(auth)
+  }
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          const userEmail = currentUser?.email || user?.email;
-          setUser(currentUser);
-          setLoading(false);
-          const loggedUser = { email: userEmail };
-          const url = "/jwt";
-          if (currentUser) {
-            axiosSecure
-              .post(url, loggedUser, {
-                withCredentials: true,
-              })
-              .then((res) => console.log(res.data));
-          } else {
-            axiosSecure
-              .post("/logout", loggedUser, {
-                withCredentials: true,
-              })
-              .then((res) => console.log("cookie cleared", res.data));
-          }
-        });
-        return () => {
-          unsubscribe();
-        };
-      }, [user?.email]);
+  useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const userEmail = currentUser?.email || user?.email;
+        setUser(currentUser);
+        setLoading(false);
+        const loggedUser = { email: userEmail };
+        const url = "/jwt";
+        if (currentUser) {
+          axiosSecure
+            .post(url, loggedUser, {
+              withCredentials: true,
+            })
+            .then((res) => console.log(res.data));
+        } else {
+          axiosSecure
+            .post("/logout", loggedUser, {
+              withCredentials: true,
+            })
+            .then((res) => console.log("cookie cleared", res.data));
+        }
+      });
+      return () => {
+        unsubscribe();
+      };
+    }, [user?.email]);
 
-    const authInfo = {
-        user,
-        createUser,
-        signIn,
-        googleSignIn,
-        logOut,
-        // updateUserProfile,
-        loading
-    }
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, currentUser => {
+  //     setLoading(false);
+  //     setUser(currentUser);
+  //   });
+  //   return () => {
+  //     return unsubscribe();
+  //   }
+  // }, [])
 
-    return (
-        <AuthContext.Provider value={authInfo}>
-            {children}
-        </AuthContext.Provider>
-    );
+  const authInfo = {
+    user,
+    createUser,
+    signIn,
+    googleSignIn,
+    logOut,
+    // updateUserProfile,
+    loading
+  }
+
+  return (
+    <AuthContext.Provider value={authInfo}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
