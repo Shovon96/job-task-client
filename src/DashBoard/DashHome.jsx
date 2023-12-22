@@ -66,13 +66,13 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen w-full mx-auto bg-orange-200 text-white pb-5">
+    <div className="flex flex-col min-h-screen w-full mx-auto bg-blue-200 text-white pb-5">
       {/* <Helmet>
         <title>Dashboard | Taskify</title>
       </Helmet> */}
       <div className="flex justify-center py-5 text-xl">
         <button
-          className="px-3 py-2 bg-orange-400 rounded-md hover:bg-orange-100 hover:text-orange-500"
+          className="px-3 py-2 bg-blue-400 rounded-md hover:bg-blue-100 hover:text-blue-500"
           onClick={() => openModal()}
         >
           Create Task

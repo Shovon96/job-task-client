@@ -39,7 +39,7 @@ const Card = ({ item, refetch, provided }) => {
       ref={provided.innerRef}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
-      className="mb-1  rounded-sm p-3 outline-2 outline-orange-500"
+      className="mb-1  rounded-sm p-3 outline-2 outline-blue-500"
     >
       <h3 className="text-bold">{item.title}</h3>
       <p className="text-sm">{item.description}</p>
@@ -68,7 +68,7 @@ const Card = ({ item, refetch, provided }) => {
         </button>
         <select
           onChange={handleStatus}
-          className="rounded-lg outline-orange-500"
+          className="rounded-lg outline-blue-500"
           name="status"
           id=""
           defaultValue={item.status}

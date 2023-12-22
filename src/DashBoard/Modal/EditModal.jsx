@@ -68,23 +68,23 @@ const EditModal = ({ isOpen, closeModal, item, refetch }) => {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-semibold text-center leading-6 text-orange-500 "
+                    className="text-lg font-semibold text-center leading-6 text-blue-500 "
                   >
                     Edit Task
                   </Dialog.Title>
                   <div className="mt-2">
                     <form onSubmit={handleUpdate}>
-                      <label className="text-orange-500">Title: </label>
+                      <label className="text-blue-500">Title: </label>
                       <input
-                        className="outline-orange-500 overflow-hidden bg-orange-200 py-1 px-1"
+                        className="outline-blue-500 overflow-hidden bg-blue-200 py-1 px-1"
                         defaultValue={item.title}
                         type="text"
                         placeholder="Title"
                         name="title"
                       />
-                      <label className="text-orange-500">Description: </label>
+                      <label className="text-blue-500">Description: </label>
                       <textarea
-                        className="outline-orange-500  bg-orange-200 py-1 px-1 mt-2"
+                        className="outline-blue-500  bg-blue-200 py-1 px-1 mt-2"
                         defaultValue={item.description}
                         placeholder="Description"
                         name="description"
@@ -92,9 +92,9 @@ const EditModal = ({ isOpen, closeModal, item, refetch }) => {
                         rows="4"
                       ></textarea>
                       <br />
-                      <label className="text-orange-500 ">Priority: </label>
+                      <label className="text-blue-500 ">Priority: </label>
                       <select
-                        className="rounded-lg mt-2 bg-orange-200 outline-orange-500"
+                        className="rounded-lg mt-2 bg-blue-200 outline-blue-500"
                         name="priority"
                         defaultValue={item.priority}
                       >
@@ -103,9 +103,9 @@ const EditModal = ({ isOpen, closeModal, item, refetch }) => {
                         <option value="moderate">Moderate</option>
                         <option value="high">High</option>
                       </select>
-                      <label className="text-orange-500 pl-1 ">Deadline:</label>
+                      <label className="text-blue-500 pl-1 ">Deadline:</label>
                       <input
-                        className="rounded-lg mt-2 bg-orange-200 outline-orange-500"
+                        className="rounded-lg mt-2 bg-blue-200 outline-blue-500"
                         type="date"
                         name="deadline"
                         defaultValue={item.deadline}
@@ -113,7 +113,7 @@ const EditModal = ({ isOpen, closeModal, item, refetch }) => {
                       <br />
                       <button
                         type="submit"
-                        className="mt-4 inline-flex justify-center rounded-md border border-transparent bg-orange-100 px-4 py-2 text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                        className="mt-4 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                         // onClick={handleTerSend}
                       >
                         Update
